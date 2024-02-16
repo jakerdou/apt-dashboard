@@ -7,15 +7,21 @@ function SubwayCard({ imgUrl, right, train_id }) {
     const [southTimes, setSouthTimes] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/train-time-data?train_id=' + train_id, {method: 'GET'})
-            .then(response => response.json())
-            .then(json => {
-                console.log('train data', json);
-                setNorthTimes(json.north)
-                setSouthTimes(json.south)
-            })
-            .catch(error => console.error(error));        
-        }, []);
+        const interval = setInterval(() => {
+            fetch('http://localhost:5000/train-time-data?train_id=' + train_id, {method: 'GET'})
+                .then(response => response.json())
+                .then(json => {
+                    console.log('train data', json);
+                    setNorthTimes(json.north)
+                    setSouthTimes(json.south)
+                })
+                .catch(error => console.error(error));
+        }, 60000);
+
+        return () => {
+            clearInterval(interval);
+        };        
+    }, []);
 
     const displayTimes = times => {
         console.log(times)
