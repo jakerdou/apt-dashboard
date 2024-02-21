@@ -8,16 +8,20 @@ function WeatherCard() {
   const [low, setLow] = useState();
 
   useEffect(() => {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=40.76&longitude=-73.97&current=temperature_2m,apparent_temperature&hourly=temperature_2m&temperature_unit=fahrenheit')
-      .then(response => response.json())
-      .then(json => {
-        console.log('json', json);
-        setTemp(json.current.temperature_2m)
-      })
-      // .then(json => {setWeatherData(json); console.log(json);})
-      .catch(error => console.error(error));
-
-      // console.log(weatherData);
+    const interval = setInterval(() => {
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=40.76&longitude=-73.97&current=temperature_2m,apparent_temperature&hourly=temperature_2m&temperature_unit=fahrenheit')
+          .then(response => response.json())
+          .then(json => {
+            console.log('json', json);
+            setTemp(json.current.temperature_2m)
+          })
+          // .then(json => {setWeatherData(json); console.log(json);})
+          .catch(error => console.error(error));
+     }, 1800000)
+     
+     return () => {
+         clearInterval(interval);
+     };
   }, []);
 
   // console.log(weatherData);
