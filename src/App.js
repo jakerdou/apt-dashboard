@@ -20,6 +20,19 @@ const App = () => {
           setTrainTimeData(json)
       })
       .catch(error => console.error(error));
+    const interval = setInterval(() => {
+            fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
+                .then(response => response.json())
+                .then(json => {
+                    console.log('train data', json);
+                    setTrainTimeData(json)
+                })
+                .catch(error => console.error(error));
+        }, 30000);
+
+        return () => {
+            clearInterval(interval);
+        };
   }, [])
 
   const directionLabelStyles = {
