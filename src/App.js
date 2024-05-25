@@ -1,50 +1,39 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { useState, useEffect } from 'react';
+import { Box, Grid } from '@mui/material';
 
 import SubwayCard from "./component/SubwayCard";
+import SubwayList from "./component/SubwayList";
 import BusCard from "./component/BusCard";
 import WeatherCard from "./component/WeatherCard";
 
-function App() {
+import './App.css'
+
+const App = () => {
+
+  const [trainTimeData, setTrainTimeData] = useState('')
+
+  useEffect(() =>{
+    fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
+      .then(response => response.json())
+      .then(json => {
+          console.log('train data', json);
+          setTrainTimeData(json)
+      })
+      .catch(error => console.error(error));
+  }, [])
+
+  const directionLabelStyles = {
+    fontSize: '3.5em'
+  }
+
   return (
-    <Container>
-      <Row>
-        <Col>
-          <SubwayCard 
-            imgUrl={"https://transitgifts.com/cdn/shop/products/28249_1024x1024@2x.jpg?v=1559005970"}
-            train_id={"E"}
-          />
-        </Col>
-        <Col>
-          <SubwayCard 
-            imgUrl={"https://transitgifts.com/cdn/shop/products/28269_1024x1024@2x.jpg?v=1559005989"}
-            train_id={"F"}
-            right={true}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <SubwayCard 
-            imgUrl={"https://transitgifts.com/cdn/shop/products/28261_1024x1024@2x.jpg?v=1559005981"}
-            train_id={"6"}
-          />
-        </Col>
-        <Col>
-          <BusCard 
-            busId={'M15'}
-            right={true}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <WeatherCard />
-        </Col>
-      </Row>
-    </Container>
+    <Box className='App'>
+      <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
+      <Box><SubwayList trainTimeData={trainTimeData['uptown']}/></Box>
+      <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
+      <Box><SubwayList trainTimeData={trainTimeData['downtown']}/></Box>
+    </Box>
   );
-}
+};
 
 export default App;

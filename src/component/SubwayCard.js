@@ -1,55 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 
-function SubwayCard({ imgUrl, right, train_id }) {
+import { Box, Grid } from '@mui/material';
 
-    const [northTimes, setNorthTimes] = useState([])
-    const [southTimes, setSouthTimes] = useState([])
+function SubwayCard({ trainID, secsAway }) {
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            fetch('http://localhost:5000/train-time-data?train_id=' + train_id, {method: 'GET'})
-                .then(response => response.json())
-                .then(json => {
-                    console.log('train data', json);
-                    setNorthTimes(json.north)
-                    setSouthTimes(json.south)
-                })
-                .catch(error => console.error(error));
-        }, 60000);
+    const displayTimes = time => {
+        console.log(time)
+        return Math.round((time / 60) * 10) / 10
+    }
 
-        return () => {
-            clearInterval(interval);
-        };        
-    }, []);
+    let imgURL = ''
+    switch(trainID) {
+        case 'E':
+            // imgURL = 'https://transitgifts.com/cdn/shop/products/28249_1024x1024@2x.jpg?v=1559005970'
+            imgURL = 'e-letter.svg'
+            break;
+        case 'M':
+            // imgURL = 'https://transitgifts.com/cdn/shop/products/28252_1024x1024@2x.jpg?v=1559005973'
+            imgURL = 'm-letter.svg'
+            break;
+        case '6':
+            // imgURL = 'https://transitgifts.com/cdn/shop/products/28261_1024x1024@2x.jpg?v=1559005981'
+            imgURL = '6-digit.svg'
+            break;
+    }
 
-    const displayTimes = times => {
-        console.log(times)
-        return (
-            <span>
-                {times.slice(0,3).map((time) => {
-                    console.log(time)
-                    return Math.round((time / 60) * 10) / 10 + (time === times[2] ? '' : ', ')
-                })}
-            </span>
-        )
+    let minsAwayStyle = {
+        backgroundColor: secsAway < 600 ? '#00cf0054' : secsAway < 1200 ? '#ffff005e' : '#ff00004d',
+        padding: '12px',
+        margin: '8px', 
+        fontSize: '2em',
+        borderRadius: '32px',
+        // color: '#626262',
+        fontWeight: 'bold'
     }
 
     return (
-    <div className="SubwayCard">
-        <Card style={{ width: 'fit-content', margin: '1em', padding: '2em 5em', float: right ? 'right' : 'left' }}>
-            <Card.Img style={{height: "10em", width: "fit-content"}} variant="top" src={imgUrl} />
-            <Card.Body>
-                <Card.Title>Downtown</Card.Title>
-                <Card.Text>
-                    In {displayTimes(southTimes)} mins
-                </Card.Text>
-                <Card.Title>Uptown</Card.Title>
-                <Card.Text>
-                    In {displayTimes(northTimes)} mins
-                </Card.Text>
-            </Card.Body>
-        </Card>
+    <div className="SubwayCard" style={{backgroundColor: 'rgb(225 225 225)', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.5) -2px 2px 3px', padding: '8px'}}>
+        <img src={imgURL} style={{height: '175px', padding: '16px'}} />
+        <Box sx={minsAwayStyle}>{displayTimes(secsAway)} min.</Box>
     </div>
     );
 }
