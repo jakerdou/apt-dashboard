@@ -4,7 +4,7 @@ import SubwayCard from "./SubwayCard";
 
 function SubwayList({ trainTimeData }) {
 
-    console.log(trainTimeData)
+    // console.log(trainTimeData)
 
     return (
         <Box sx={{width: '100%', textAlign: 'center'}}>

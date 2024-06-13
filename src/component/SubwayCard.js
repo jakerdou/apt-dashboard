@@ -6,7 +6,7 @@ import { Box, Grid } from '@mui/material';
 function SubwayCard({ trainID, secsAway }) {
 
     const displayTimes = time => {
-        console.log(time)
+        // console.log(time)
         return Math.round((time / 60) * 10) / 10
     }
 
@@ -32,7 +32,6 @@ function SubwayCard({ trainID, secsAway }) {
         margin: '8px', 
         fontSize: '2em',
         borderRadius: '32px',
-        // color: '#626262',
         fontWeight: 'bold'
     }
 

@@ -41,9 +41,10 @@ const App = () => {
 
   return (
     <Box className='App'>
-      <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
+      <Box><WeatherCard /></Box>
+      <Box className='mt-2' sx={directionLabelStyles}>Uptown</Box>
       <Box><SubwayList trainTimeData={trainTimeData['uptown']}/></Box>
-      <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
+      <Box className='mt-2' sx={directionLabelStyles}>Downtown</Box>
       <Box><SubwayList trainTimeData={trainTimeData['downtown']}/></Box>
     </Box>
   );
