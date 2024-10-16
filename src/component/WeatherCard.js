@@ -87,18 +87,21 @@ function WeatherCard() {
   }, []);
 
   return (
-    <div>
+    <div style={{height: '100%'}}>
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           className="WeatherCard"
-          sx={{borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.5) -2px 2px 3px', width: '20%', marginLeft: '40%', marginTop: '16px'}}
+          sx={{borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.5) -2px 2px 3px', marginTop: '16px', height: '100%'}}
         >
           <Box sx={{width: '50%'}}>
-            {typeof wmoCode === 'number' ? <img style={{height: '200px', margin: '-24px'}} src={wmoCodeDescriptions[wmoCode][isDay ? 'day' : 'night']['image']} /> : null}
+            {typeof wmoCode === 'number' ? <img style={{height: '250px', margin: '-24px'}} src={wmoCodeDescriptions[wmoCode][isDay ? 'day' : 'night']['image']} /> : null}
+            {/* <Box sx={{fontSize: '1.5em', paddingBottom: '16px'}}>
+              {'Cloud Cover: ' + cloudCover + '%'}
+            </Box> */}
           </Box>
-          <Box sx={{width: '50%'}}>
+          <Box sx={{width: '50%', marginLeft: '-32px'}}>
             <Box sx={{fontSize: '3em'}}>
               {temp || 'N/A'}°
             </Box>
@@ -106,9 +109,6 @@ function WeatherCard() {
               {low}° / {high}°
             </Box>
             {precipitation > 0 ? <Box sx={{fontSize: '1.5em'}}>Precipitation: {precipitation} in.</Box> : null}
-            <Box sx={{fontSize: '1.5em'}}>
-              {'Cloud Cover: ' + cloudCover + '%'}
-            </Box>
           </Box>
         </Box>
     </div>

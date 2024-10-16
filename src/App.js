@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Fade } from '@mui/material';
 
 import SubwayCard from "./component/SubwayCard";
 import SubwayList from "./component/SubwayList";
 import BusCard from "./component/BusCard";
 import WeatherCard from "./component/WeatherCard";
+import DateTimeCard from "./component/DateTimeCard";
 
 import './App.css'
 
@@ -43,12 +44,31 @@ const App = () => {
   }
 
   return (
-    <Box className='App'>
-      <Box><WeatherCard /></Box>
-      <Box className='mt-2' sx={directionLabelStyles}>Uptown</Box>
-      <Box><SubwayList trainTimeData={trainTimeData['uptown']}/></Box>
-      <Box className='mt-2' sx={directionLabelStyles}>Downtown</Box>
-      <Box><SubwayList trainTimeData={trainTimeData['downtown']}/></Box>
+    <Box className='App' sx={{ padding: '0 16px' }}>
+      <Grid container spacing={4} justifyContent="center" sx={{ marginTop: '16px' }}>
+        <Grid item xs={12} sm={12} md={4} height='220px'>
+          <DateTimeCard />
+        </Grid>
+        <Grid item xs={12} sm={12} md={4} height='220px'>
+          <WeatherCard />
+        </Grid>
+      </Grid>
+      <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
+      <Box>
+        <Fade in={!!trainTimeData['uptown']} timeout={1000} key={JSON.stringify(trainTimeData['uptown'])}>
+          <Box>
+            <SubwayList trainTimeData={trainTimeData['uptown']}/>
+          </Box>
+        </Fade>
+      </Box>
+      <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
+      <Box>
+        <Fade in={!!trainTimeData['downtown']} timeout={1000} key={JSON.stringify(trainTimeData['downtown'])}>
+          <Box>
+            <SubwayList trainTimeData={trainTimeData['downtown']}/>
+          </Box>
+        </Fade>
+      </Box>
     </Box>
   );
 };

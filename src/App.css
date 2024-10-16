@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.SubwayCard, .WeatherCard {
+.SubwayCard, .WeatherCard, .DateTimeCard {
   background-color: #293643;
   /* background-color: #2c3e50; */
 }
