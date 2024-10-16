@@ -11,9 +11,11 @@ import './App.css'
 const App = () => {
 
   const [trainTimeData, setTrainTimeData] = useState('')
+  const trainDataUrl = process.env.REACT_APP_TRAIN_DATA_URL;
 
   useEffect(() =>{
-    fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
+    fetch(`${trainDataUrl}?train_id=E&train_id=M&train_id=6`, {method: 'GET'})
+    // fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
       .then(response => response.json())
       .then(json => {
           console.log('train data', json);
@@ -21,7 +23,8 @@ const App = () => {
       })
       .catch(error => console.error(error));
     const interval = setInterval(() => {
-            fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
+            fetch(`${trainDataUrl}?train_id=E&train_id=M&train_id=6`, {method: 'GET'})
+            // fetch('http://localhost:5000/train-time-data?train_id=E&train_id=M&train_id=6', {method: 'GET'})
                 .then(response => response.json())
                 .then(json => {
                     console.log('train data', json);

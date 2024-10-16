@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+
+.SubwayCard, .WeatherCard {
+  background-color: #293643;
+  /* background-color: #2c3e50; */
+}
