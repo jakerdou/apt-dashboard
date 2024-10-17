@@ -55,7 +55,7 @@ const App = () => {
       </Grid>
       <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
       <Box>
-        <Fade in={!!trainTimeData['uptown']} timeout={1000} key={JSON.stringify(trainTimeData['uptown'])}>
+        <Fade in={!!trainTimeData['uptown']} timeout={2500} key={JSON.stringify(trainTimeData['uptown'])}>
           <Box>
             <SubwayList trainTimeData={trainTimeData['uptown']}/>
           </Box>
@@ -63,7 +63,7 @@ const App = () => {
       </Box>
       <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
       <Box>
-        <Fade in={!!trainTimeData['downtown']} timeout={1000} key={JSON.stringify(trainTimeData['downtown'])}>
+        <Fade in={!!trainTimeData['downtown']} timeout={2500} key={JSON.stringify(trainTimeData['downtown'])}>
           <Box>
             <SubwayList trainTimeData={trainTimeData['downtown']}/>
           </Box>

@@ -102,10 +102,10 @@ function WeatherCard() {
             </Box> */}
           </Box>
           <Box sx={{width: '50%', marginLeft: '-32px'}}>
-            <Box sx={{fontSize: '3em'}}>
+            <Box sx={{fontSize: '3.25em'}}>
               {temp || 'N/A'}°
             </Box>
-            <Box sx={{fontSize: '2em'}}>
+            <Box sx={{fontSize: '2.5em'}}>
               {low}° / {high}°
             </Box>
             {precipitation > 0 ? <Box sx={{fontSize: '1.5em'}}>Precipitation: {precipitation} in.</Box> : null}
