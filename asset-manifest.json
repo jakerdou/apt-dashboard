@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/apt-dashboard/static/css/main.2f76e650.css",
-    "main.js": "/apt-dashboard/static/js/main.82d6d85b.js",
+    "main.js": "/apt-dashboard/static/js/main.62d612bd.js",
     "static/js/453.4304274e.chunk.js": "/apt-dashboard/static/js/453.4304274e.chunk.js",
     "index.html": "/apt-dashboard/index.html",
     "main.2f76e650.css.map": "/apt-dashboard/static/css/main.2f76e650.css.map",
-    "main.82d6d85b.js.map": "/apt-dashboard/static/js/main.82d6d85b.js.map",
+    "main.62d612bd.js.map": "/apt-dashboard/static/js/main.62d612bd.js.map",
     "453.4304274e.chunk.js.map": "/apt-dashboard/static/js/453.4304274e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2f76e650.css",
-    "static/js/main.82d6d85b.js"
+    "static/js/main.62d612bd.js"
   ]
 }
