@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Fade } from '@mui/material';
+import { Box, Grid, Fade, Tooltip } from '@mui/material';
 
 import SubwayCard from "./component/SubwayCard";
 import SubwayList from "./component/SubwayList";
@@ -53,7 +53,9 @@ const App = () => {
           <WeatherCard />
         </Grid>
       </Grid>
-      <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
+      <Tooltip title="51st/Lex & 53rd/Lex Stops" arrow placement="top">
+        <Box className='mt-4' sx={directionLabelStyles}>Uptown</Box>
+      </Tooltip>
       <Box>
         <Fade in={!!trainTimeData['uptown']} timeout={2500} key={JSON.stringify(trainTimeData['uptown'])}>
           <Box>
@@ -61,7 +63,9 @@ const App = () => {
           </Box>
         </Fade>
       </Box>
-      <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
+      <Tooltip title="51st/Lex & 53rd/Lex Stops" arrow placement="top">
+        <Box className='mt-4' sx={directionLabelStyles}>Downtown</Box>
+      </Tooltip>
       <Box>
         <Fade in={!!trainTimeData['downtown']} timeout={2500} key={JSON.stringify(trainTimeData['downtown'])}>
           <Box>
